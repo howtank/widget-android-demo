@@ -150,3 +150,41 @@ Event name | Description
 **DISPLAYED** | When the widget bubble is displayed
 **HIDDEN** | When the widget bubble is hidden
               
+### Conversion tracker integration
+
+You can track 2 types of goals: generic and purchases.
+
+> **Generic goal tracking**
+
+The following tracker has to be called on activities where the goals you want to track are achieved:
+```
+HowtankWidget.getInstance().conversion("GOAL_NAME")
+```
+
+***Where***
+Name | Description | Mandatory?
+--- | --- | ---
+**GOAL_NAME** | String, the name of the goal you want to track. </br> You can have several goals (e.g. purchase, registration, subscription, etc.). </br> Our platform will automatically generate a report for each goal tracked. | YES 
+
+
+> **Purchase**
+
+This specific tracker allows you to provide more information about purchases:
+
+```
+final HTPurchaseParameters purchaseParameters = new HTPurchaseParameters()
+purchaseParameters.setNewBuyer(IS_NEW_BUYER);
+purchaseParameters.setPurchaseId("PURCHASE_ID");
+purchaseParameters.setValueAmount(VALUE_AMOUNT);
+purchaseParameters.setValueCurrency("VALUE_CURRENCY");
+// Send the purchase conversion tag
+HowtankWidget.getInstance().conversion("GOAL_NAME", purchaseParameters)
+```
+
+***Where***
+Name | Description | Mandatory?
+--- | --- | ---
+**GOAL_NAME** | **String**, the name of the goal you want to track. </br> You can have several goals (e.g. purchase, registration, subscription, etc.). </br> Our platform will automatically generate a report for each goal tracked. | YES 
+**IS_NEW_BUYER** | `true` : this is the first purchase of this user </br> `false` : this user is a returning customer | YES
+**PURCHASE_ID** | **String**, identifier of the purchase in your system | YES
+VALUE_CURRENCY | ISO Currency code string (eg. `USD`, `EUR`, `GBP`, etc.) | YES
