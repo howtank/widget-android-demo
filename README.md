@@ -43,6 +43,8 @@ this | Your activity context | YES
 **HOST_MNEMONIC** | Your identifier (given by Howtank team) | YES 
 
 
+</br>
+
 >**Activities configuration**
 
 You might want to display the widget on some activities (or fragments) and not on some others, or display the widget everywhere in your app. In any case, you **need** to call the following method within all your activities’ onResume function:
@@ -51,6 +53,8 @@ You might want to display the widget on some activities (or fragments) and not o
  // Howtank Widget specific configuration
 HowtankWidget.getInstance().browse(this, SHOW_WIDGET, "PAGE_NAME", "PAGE_URL");
 ```
+</br>
+
 ***Where***
 Name | Description | Mandatory?
 --- | --- | ---
@@ -69,11 +73,15 @@ That’s all! The Howtank Widget should appear on the bottom-right end corner of
 - Default configuration gets the widget running in a few lines of code. However, you can overload it with the following parameters.
 - Please note that `init` should always be called last.
 
+</br>
+
 >**Example**
 ```
 HowtankWidget.getInstance() .setVerboseOn(true)
         .init(this, "HOST_MNEMONIC");
 ```
+
+</br>
 
 >**Verbose mode**
 ```
@@ -81,7 +89,10 @@ setVerboseOn(true|false)
 ```
 Enable more detailed logs when something went wrong. Only sets this to true in debug mode when debugging with the Howtank team.
 
-###Adding a handler
+
+</br>
+
+### Adding a handler
 
 You can set a `HowtankWidgetHandler` before calling the init method:
 
@@ -95,6 +106,8 @@ HowtankWidget.getInstance()
 
 The following methods will be called when specific actions occur:
 
+</br>
+
 >**Selected link**
 ```
 public void onLinkSelected(String link) {
@@ -103,6 +116,8 @@ public void onLinkSelected(String link) {
 ```
 
 When user click on the link in the chat, this method is called so you can handle the clicked link properly. By default, nothing happens when user clicks on a link.
+
+</br>
 
 >**Widget unavailable**
 
@@ -113,6 +128,8 @@ public void widgetUnavailable(String reason) {
 ```
 
 When the widget is unavailable, this method is called with the reason.
+
+</br>
 
 >**Widget events**
 
