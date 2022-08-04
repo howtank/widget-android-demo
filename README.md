@@ -68,7 +68,7 @@ That’s all! The Howtank Widget should appear on the bottom-right end corner of
 ![Screenshot](./assets/3.png)
 
 
-###Advanced configuration
+### Advanced configuration
 
 - Default configuration gets the widget running in a few lines of code. However, you can overload it with the following parameters.
 - Please note that `init` should always be called last.
@@ -142,7 +142,7 @@ public void widgetEvent(HowtankWidgetEvent event) {
 This method is called when a specific event is triggered, usually by the user. The following events may be triggered:
 
 Event name | Description 
---- | --- | ---
+--- | ---
 **INITIALIZED** | When the widget has been correctly initialized and the chat is active
 **OPENED** | Triggered when the user clicks on the chat bubble
 **DISABLED** | When the chat bubble has been dragged and released over the deletion area
