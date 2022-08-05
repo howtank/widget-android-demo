@@ -25,7 +25,6 @@ pipeline {
     }
     stages {
         stage('Build Bundle') {
-            when { expression { return isDeployCandidate() } }
             steps {
                 echo 'Building'
                 script {
