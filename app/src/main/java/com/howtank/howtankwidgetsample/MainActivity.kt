@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 .setHandler(object : HowtankWidgetHandler {
                     override fun onLinkSelected(link: String?) {
                         if (link != null) {
-                            appendText("Link selected " + link)
+                            appendText("Link selected $link")
                         }
                     }
 
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun widgetUnavailable(reason: String?) {
-                        appendText("Howtank widget is not available: " + reason)
+                        appendText("Howtank widget is not available: $reason")
                     }
 
                 })
@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
                 .init(this, hostId)
 
         actionsTextView.text = ""
-        actionsTextView.setMovementMethod(ScrollingMovementMethod())
+        actionsTextView.movementMethod = ScrollingMovementMethod()
         moreActionsView.visibility = View.INVISIBLE
-        appendText("Widget is initialized for host id '" + hostId + "' using sandbox: " + sandbox)
+        appendText("Widget is initialized for host id '$hostId' using sandbox: $sandbox")
 
         initButtons()
     }
@@ -73,17 +73,17 @@ class MainActivity : AppCompatActivity() {
     private fun initButtons() {
         showDefaultPositionButton.setOnClickListener {
             // Shows the widget at the default position. Typically, this method is called on each activity "onResume"
-            HowtankWidget.getInstance().browse(this, true, "Page with default position", "http://www.howtank.com/default")
+            HowtankWidget.getInstance().browse(this, true, "Page with default position", "http://c1.howtank.com/default")
         }
 
         showCustomPositionButton.setOnClickListener {
             // Shows the widget at a custom position. Typically, this method is called on each activity "onResume"
-            HowtankWidget.getInstance().browse(this, true, "Page with custom position", "http://www.howtank.com/custom", "10 10 - -")
+            HowtankWidget.getInstance().browse(this, true, "Page with custom position", "http://c1.howtank.com/custom", "10 10 - -")
         }
 
         hideButton.setOnClickListener {
             /// Hides the widget. Typically, this method is called on a new activity "onResume"
-            HowtankWidget.getInstance().browse(this, false, "Page with hidden widget", "http://www.howtank.com/hidden")
+            HowtankWidget.getInstance().browse(this, false, "Page with hidden widget", "http://c1.howtank.com/hidden")
         }
 
         openButton.setOnClickListener {
