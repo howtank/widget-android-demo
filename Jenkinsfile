@@ -14,7 +14,6 @@ def getTrackType() {
 }
 
 pipeline {
-    agent { dockerfile true }
     environment {
         appName = 'howtank-demo'
 
