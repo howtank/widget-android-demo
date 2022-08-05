@@ -23,27 +23,26 @@ pipeline {
         KEYSTORE = credentials('keystore')
         STORE_PASSWORD = credentials('storePassword')
     }
-        stage('Build Bundle') {
-            when { expression { return isDeployCandidate() } }
-            steps {
-                echo 'Building'
-                script {
-                    VARIANT = getBuildType()
-                    sh "./gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}"
-                }
+    stage('Build Bundle') {
+        when { expression { return isDeployCandidate() } }
+        steps {
+            echo 'Building'
+            script {
+                VARIANT = getBuildType()
+                sh "./gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}"
             }
         }
-        stage('Deploy App to Store') {
-            steps {
-                echo 'Deploying'
-                script {
-                    VARIANT = getBuildType()
-                    TRACK = getTrackType()
+    }
+    stage('Deploy App to Store') {
+        steps {
+            echo 'Deploying'
+            script {
+                VARIANT = getBuildType()
+                TRACK = getTrackType()
 
-                    androidApkUpload googleCredentialsId: 'play-store-credentials',
-                            filesPattern: "**/outputs/bundle/${VARIANT.toLowerCase()}/*.aab",
-                            trackName: TRACK
-                }
+                androidApkUpload googleCredentialsId: 'play-store-credentials',
+                        filesPattern: "**/outputs/bundle/${VARIANT.toLowerCase()}/*.aab",
+                        trackName: TRACK
             }
         }
     }
