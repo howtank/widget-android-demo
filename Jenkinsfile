@@ -16,12 +16,13 @@ def getTrackType() {
 pipeline {
     agent any
     environment {
-        appName = 'howtank-demo'
+        appName = 'howtank-widget-demo'
 
-        KEY_PASSWORD = credentials('keyPass')
-        KEY_ALIAS = credentials('alias')
-        KEYSTORE = credentials('keystore')
-        STORE_PASSWORD = credentials('storePass')
+        KEY_PASSWORD = credentials('MOB_KEY_PASSWORD')
+        KEY_ALIAS = credentials('MOB_KEY_ALIAS')
+        KEYSTORE = credentials('MOB_KEYSTORE')
+        STORE_PASSWORD = credentials('MOB_STORE_PASSWORD')
+        GRADLE_PROPERTIES = credentials('gradle.properties')
     }
     stages {
         stage('Build Bundle') {
@@ -29,6 +30,10 @@ pipeline {
                 echo 'Building'
                 script {
                     VARIANT = getBuildType()
+                    sh "rm -rf ./gradle.properties"
+                    sh "rm -rf ./keystore.jks"
+                    sh "cp -rv ${GRADLE_PROPERTIES} ./"
+                    sh "cp -rv ${KEYSTORE} ./"
                     sh "./gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}"
                 }
             }
@@ -39,9 +44,10 @@ pipeline {
                 script {
                     VARIANT = getBuildType()
                     TRACK = getTrackType()
-                    androidApkUpload googleCredentialsId: 'play-store-credentials',
+                    androidApkUpload googleCredentialsId: 'android-mobile',
                             filesPattern: "**/outputs/bundle/${VARIANT.toLowerCase()}/*.aab",
-                            trackName: TRACK
+                            trackName: TRACK,
+                            rolloutPercentage: '100'
                 }
             }
         }
