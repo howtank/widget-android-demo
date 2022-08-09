@@ -30,11 +30,11 @@ pipeline {
                 echo 'Building'
                 script {
                     VARIANT = getBuildType()
-                    sh('rm -rf ./gradle.properties')
-                    sh('rm -rf ./keystore.jks')
-                    sh('cp -rv $GRADLE_PROPERTIES ./')
-                    sh('cp -rv $KEYSTORE ./')
-                    sh('./gradlew -PstorePass=$STORE_PASSWORD -Pkeystore=$KEYSTORE -Palias=$KEY_ALIAS -PkeyPass=$KEY_PASSWORD bundle$VARIANT')
+                    sh 'rm -rf ./gradle.properties'
+                    sh 'rm -rf ./keystore.jks'
+                    sh 'cp -rv ${GRADLE_PROPERTIES} ./'
+                    sh 'cp -rv ${KEYSTORE} ./'
+                    sh './gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}'
                 }
             }
         }
