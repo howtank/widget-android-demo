@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
                 })
                 .setVerboseOn(verbose)
-                .useSandboxPlatform(sandbox)
+                .useSandboxPlatform()
                 //.setCustomImages(INACTIVE_IMAGE_RESOURCE, ACTIVE_IMAGE_RESOURCE) // custom bubble images
                 .init(this, hostId)
 
