@@ -32,6 +32,27 @@ dependencies {
     implementation 'com.howtank.widget:howtankwidget:1.4.3'
 }
 ```
+Create file `network_security_config.xml` in the folder `res/xml` and input the following content:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">www.howtank.com</domain>
+  </domain-config>
+</network-security-config>
+```
+
+In `AndroidManifest.xml`, add following attribute to application tag:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest ... >
+    <application android:networkSecurityConfig="@xml/network_security_config"
+                    ... >
+        ...
+    </application>
+</manifest>
+```
 
 </br>
 
