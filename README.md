@@ -1,6 +1,6 @@
 # Howtank Widget Demo App
 
-## Latest version: 1.4.7
+## Latest version: 1.4.8
 
 ### Technical overview
 - The Howtank Android widget is a library that, once included in your app, display the Howtank chat. Before being clicked by the user, it is in a "folded" state, waiting quietly for a user action.
@@ -29,9 +29,7 @@ Then, in your app `build.gradle` file, add the following dependency:
 ```
 dependencies {
     ...
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
-    implementation 'com.howtank.widget:howtankwidget:1.4.7'
+    implementation 'com.howtank.widget:howtankwidget:1.4.8'
 }
 ```
 Create file `network_security_config.xml` in the folder `res/xml` and input the following content:
