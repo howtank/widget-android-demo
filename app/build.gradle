@@ -17,13 +17,12 @@ def computeVersionCode() {
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
     
     defaultConfig {
         applicationId "com.howtank.howtankwidgetsample"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionName computeVersionName()
         versionCode computeVersionCode()
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
